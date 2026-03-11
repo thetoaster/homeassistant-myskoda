@@ -79,6 +79,7 @@ async def async_setup_entry(
             LastTripTravelTime,
             LastTripAverageSpeed,
             LastTripAverageFuelConsumption,
+            RecentTrips,
         ],
         coordinators=hass.data[DOMAIN][config.entry_id][COORDINATORS],
         async_add_entities=async_add_entities,
@@ -982,3 +983,47 @@ class LastTripAverageFuelConsumption(TripStatisticSensor):
         if stats := self.vehicle.single_trip_statistics:
             if stats.daily_trips and stats.daily_trips[0].trips:
                 return stats.daily_trips[0].trips[0].average_fuel_consumption
+
+class RecentTrips(TripStatisticSensor):
+    """Report recent trips information (number of trips and JSON attributes)."""
+
+    entity_description = SensorEntityDescription(
+        key="recent_trips",
+        translation_key="recent_trips",
+        icon="mdi:map-marker-distance",
+    )
+
+    @property
+    def native_value(self) -> int | None:
+        """Return total number of trips available in recent single trips data."""
+        if not self.vehicle.single_trip_statistics:
+            return None
+        
+        total = 0
+        for daily in self.vehicle.single_trip_statistics.daily_trips:
+            if daily.trips:
+                total += len(daily.trips)
+        return total
+
+    @property
+    def extra_state_attributes(self) -> dict:
+        """Returns JSON attributes for use in ApexCharts or Flex Table Cards."""
+        attributes = {}
+        if not self.vehicle.single_trip_statistics:
+            return attributes
+            
+        trips_list = []
+        for daily in self.vehicle.single_trip_statistics.daily_trips:
+            if daily.trips:
+                for trip in daily.trips:
+                    trips_list.append({
+                        "date": daily.date,
+                        "start_time": trip.start_time if hasattr(trip, "start_time") else None,
+                        "end_time": trip.end_time,
+                        "mileage": trip.mileage_in_km,
+                        "travel_time": trip.travel_time_in_min,
+                        "average_speed": trip.average_speed_in_kmph,
+                        "average_fuel_consumption": trip.average_fuel_consumption
+                    })
+        attributes["trips"] = trips_list
+        return attributes

@@ -259,6 +259,9 @@
             },
             "last_trip_average_fuel_consumption": {
                 "name": "Last Trip Average Fuel Consumption"
+            },
+            "recent_trips": {
+                "name": "Recent Trips"
             }
         },
         "switch": {
