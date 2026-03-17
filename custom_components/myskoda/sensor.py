@@ -840,6 +840,7 @@ class OverallMileage(TripStatisticSensor):
         native_unit_of_measurement=UnitOfLength.KILOMETERS,
         device_class=SensorDeviceClass.DISTANCE,
         translation_key="overall_mileage",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -857,6 +858,7 @@ class OverallTravelTime(TripStatisticSensor):
         native_unit_of_measurement=UnitOfTime.MINUTES,
         device_class=SensorDeviceClass.DURATION,
         translation_key="overall_travel_time",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -874,6 +876,7 @@ class OverallAverageSpeed(TripStatisticSensor):
         native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR,
         device_class=SensorDeviceClass.SPEED,
         translation_key="overall_average_speed",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -890,6 +893,7 @@ class OverallAverageElectricConsumption(TripStatisticSensor):
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement="kWh/100km",
         translation_key="overall_average_electric_consumption",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -906,6 +910,7 @@ class OverallAverageFuelConsumption(TripStatisticSensor):
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement="l/100km",
         translation_key="overall_average_fuel_consumption",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -923,6 +928,7 @@ class LastTripMileage(TripStatisticSensor):
         native_unit_of_measurement=UnitOfLength.KILOMETERS,
         device_class=SensorDeviceClass.DISTANCE,
         translation_key="last_trip_mileage",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -941,6 +947,7 @@ class LastTripTravelTime(TripStatisticSensor):
         native_unit_of_measurement=UnitOfTime.MINUTES,
         device_class=SensorDeviceClass.DURATION,
         translation_key="last_trip_travel_time",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -959,6 +966,7 @@ class LastTripAverageSpeed(TripStatisticSensor):
         native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR,
         device_class=SensorDeviceClass.SPEED,
         translation_key="last_trip_average_speed",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
@@ -976,6 +984,7 @@ class LastTripAverageFuelConsumption(TripStatisticSensor):
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement="l/100km",
         translation_key="last_trip_average_fuel_consumption",
+        entity_category=EntityCategory.DIAGNOSTIC,
     )
 
     @property
