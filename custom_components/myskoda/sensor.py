@@ -686,6 +686,7 @@ class ChargingState(ChargingSensor):
         "ready_for_charging",
         "conserving",
         "charging",
+        "charging_interrupted",
     ]
 
     @property
